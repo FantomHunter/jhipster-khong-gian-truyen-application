@@ -1,0 +1,38 @@
+{
+  "name": "Rating",
+  "fields": [
+    {
+      "fieldName": "ratingDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "Float"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "rating",
+      "relationshipName": "user",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "rating",
+      "relationshipName": "rating"
+    }
+  ],
+  "entityTableName": "rating",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211125133452"
+}

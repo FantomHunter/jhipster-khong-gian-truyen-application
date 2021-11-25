@@ -1,0 +1,36 @@
+{
+  "khongGianTruyenApp": {
+    "product": {
+      "home": {
+        "title": "Products",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Product",
+        "createOrEditLabel": "Create or edit a Product",
+        "notFound": "No Products found"
+      },
+      "created": "A new Product is created with identifier {{ param }}",
+      "updated": "A Product is updated with identifier {{ param }}",
+      "deleted": "A Product is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Product {{ id }}?"
+      },
+      "detail": {
+        "title": "Product"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "imageUrl": "Image Url",
+      "publishDate": "Publish Date",
+      "status": "Status",
+      "type": "Type",
+      "totalChapter": "Total Chapter",
+      "author": "Author",
+      "resourceDownload": "Resource Download",
+      "like": "Like",
+      "comment": "Comment",
+      "rating": "Rating",
+      "category": "Category"
+    }
+  }
+}

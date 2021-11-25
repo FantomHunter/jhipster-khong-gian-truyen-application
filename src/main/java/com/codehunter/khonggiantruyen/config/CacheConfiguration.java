@@ -48,6 +48,21 @@ public class CacheConfiguration {
             createCache(cm, com.codehunter.khonggiantruyen.domain.User.class.getName());
             createCache(cm, com.codehunter.khonggiantruyen.domain.Authority.class.getName());
             createCache(cm, com.codehunter.khonggiantruyen.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Product.class.getName());
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Product.class.getName() + ".resourceDownloads");
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Product.class.getName() + ".likes");
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Product.class.getName() + ".comments");
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Product.class.getName() + ".ratings");
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Product.class.getName() + ".categories");
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Author.class.getName());
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Rating.class.getName());
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Comment.class.getName());
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Like.class.getName());
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Download.class.getName());
+            createCache(cm, com.codehunter.khonggiantruyen.domain.ResourceDownload.class.getName());
+            createCache(cm, com.codehunter.khonggiantruyen.domain.ResourceDownload.class.getName() + ".downloads");
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Category.class.getName());
+            createCache(cm, com.codehunter.khonggiantruyen.domain.Category.class.getName() + ".products");
             // jhipster-needle-ehcache-add-entry
         };
     }

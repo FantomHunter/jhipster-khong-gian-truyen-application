@@ -1,0 +1,38 @@
+{
+  "name": "ResourceDownload",
+  "fields": [
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "format",
+      "fieldType": "FormatType",
+      "fieldValues": "PRC,PDF,EPUB,MOBI,AZW3"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "download",
+      "otherEntityRelationshipName": "resource",
+      "relationshipName": "download"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "resourceDownload",
+      "relationshipName": "product"
+    }
+  ],
+  "entityTableName": "resource_download",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211125133456"
+}

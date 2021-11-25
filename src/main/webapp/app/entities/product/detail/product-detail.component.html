@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="product">
+      <h2 data-cy="productDetailsHeading"><span jhiTranslate="khongGianTruyenApp.product.detail.title">Product</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ product.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="khongGianTruyenApp.product.name">Name</span></dt>
+        <dd>
+          <span>{{ product.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="khongGianTruyenApp.product.description">Description</span></dt>
+        <dd>
+          <span>{{ product.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="khongGianTruyenApp.product.imageUrl">Image Url</span></dt>
+        <dd>
+          <span>{{ product.imageUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="khongGianTruyenApp.product.publishDate">Publish Date</span></dt>
+        <dd>
+          <span>{{ product.publishDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="khongGianTruyenApp.product.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'khongGianTruyenApp.Status.' + product.status }}">{{ product.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="khongGianTruyenApp.product.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'khongGianTruyenApp.FormatType.' + product.type }}">{{ product.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="khongGianTruyenApp.product.totalChapter">Total Chapter</span></dt>
+        <dd>
+          <span>{{ product.totalChapter }}</span>
+        </dd>
+        <dt><span jhiTranslate="khongGianTruyenApp.product.author">Author</span></dt>
+        <dd>
+          <div *ngIf="product.author">
+            <a [routerLink]="['/author', product.author?.id, 'view']">{{ product.author?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="khongGianTruyenApp.product.category">Category</span></dt>
+        <dd>
+          <span *ngFor="let category of product.categories; let last = last">
+            <a [routerLink]="['/category', category?.id, 'view']">{{ category.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/product', product.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

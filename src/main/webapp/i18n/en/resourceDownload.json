@@ -1,0 +1,27 @@
+{
+  "khongGianTruyenApp": {
+    "resourceDownload": {
+      "home": {
+        "title": "Resource Downloads",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Resource Download",
+        "createOrEditLabel": "Create or edit a Resource Download",
+        "notFound": "No Resource Downloads found"
+      },
+      "created": "A new Resource Download is created with identifier {{ param }}",
+      "updated": "A Resource Download is updated with identifier {{ param }}",
+      "deleted": "A Resource Download is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Resource Download {{ id }}?"
+      },
+      "detail": {
+        "title": "Resource Download"
+      },
+      "id": "ID",
+      "url": "Url",
+      "format": "Format",
+      "download": "Download",
+      "product": "Product"
+    }
+  }
+}

@@ -42,7 +42,9 @@
     "clientTheme": "none",
     "clientThemeVariant": "",
     "reactive": false,
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "entities": ["Product", "Author", "Rating", "Comment", "Like", "Download", "ResourceDownload", "Category"],
+    "lastLiquibaseTimestamp": 1637847297000
   },
   "git-provider": "GitHub",
   "git-company": "FantomHunter",

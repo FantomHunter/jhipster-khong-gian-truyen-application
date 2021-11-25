@@ -1,0 +1,34 @@
+{
+  "name": "Download",
+  "fields": [
+    {
+      "fieldName": "downloadDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "download",
+      "relationshipName": "user",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "resourceDownload",
+      "otherEntityRelationshipName": "download",
+      "relationshipName": "resource"
+    }
+  ],
+  "entityTableName": "download",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211125133455"
+}

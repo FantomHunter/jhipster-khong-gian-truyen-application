@@ -1,0 +1,10 @@
+{
+  "khongGianTruyenApp": {
+    "Status": {
+      "null": "",
+      "COMPLETED": "COMPLETED",
+      "STOPPED": "STOPPED",
+      "PUBLISHING": "PUBLISHING"
+    }
+  }
+}

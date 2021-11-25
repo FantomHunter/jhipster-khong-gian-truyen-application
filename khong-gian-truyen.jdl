@@ -1,0 +1,77 @@
+
+
+
+enum Status {
+	COMPLETED, STOPPED, PUBLISHING
+}
+enum FormatType {
+	PRC, PDF, EPUB, MOBI, AZW3
+}
+entity Product {
+	name String
+    description String
+    imageUrl String
+    publishDate Instant
+    status Status
+    type FormatType
+    totalChapter Long
+}
+
+entity Author {
+	name String
+}
+
+entity Rating {
+	ratingDate Instant
+    value Float
+}
+
+entity Comment {
+	commentDate Instant
+    content String
+}
+
+entity Like {
+	likeDate Instant
+}
+
+entity Download {
+	downloadDate Instant
+}
+
+entity ResourceDownload {
+	url String
+    format FormatType
+}
+
+entity Category {
+	name String
+}
+
+relationship OneToOne {
+	Product{author} to Author
+}
+relationship OneToMany {
+	Product to ResourceDownload{product},
+	Product to Like{product},
+    Product to Comment{product},
+    Product to Rating{rating}
+    ResourceDownload to Download{resource}
+}
+relationship ManyToOne {
+  Like{user(login)} to User,
+  Comment{user(login)} to User,
+  Rating{user(login)} to User,
+  Download{user(login)} to User,
+}
+
+relationship ManyToMany {
+  Product{category(name)} to Category{product}
+}
+// Set pagination options
+paginate ResourceDownload, Category with infinite-scroll
+paginate Product with pagination
+
+
+
+

@@ -15,7 +15,21 @@
     <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133450_added_entity_Product.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133451_added_entity_Author.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133452_added_entity_Rating.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133453_added_entity_Comment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133454_added_entity_Like.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133455_added_entity_Download.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133456_added_entity_ResourceDownload.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133457_added_entity_Category.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20211125133450_added_entity_constraints_Product.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133452_added_entity_constraints_Rating.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133453_added_entity_constraints_Comment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133454_added_entity_constraints_Like.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133455_added_entity_constraints_Download.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211125133456_added_entity_constraints_ResourceDownload.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

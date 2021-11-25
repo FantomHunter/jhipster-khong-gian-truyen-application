@@ -1,0 +1,86 @@
+{
+  "name": "Product",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "imageUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "publishDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "COMPLETED,STOPPED,PUBLISHING"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "FormatType",
+      "fieldValues": "PRC,PDF,EPUB,MOBI,AZW3"
+    },
+    {
+      "fieldName": "totalChapter",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "author",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "author",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "resourceDownload",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "resourceDownload"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "like",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "like"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "comment",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "comment"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "rating",
+      "otherEntityRelationshipName": "rating",
+      "relationshipName": "rating"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "category",
+      "otherEntityField": "name",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "product",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211125133450"
+}
