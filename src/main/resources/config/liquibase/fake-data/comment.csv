@@ -1,11 +1,11 @@
-id;comment_date;content
-1;2021-11-24T17:05:47;Arkansas purple
-2;2021-11-25T01:47:51;CSS circuit
-3;2021-11-24T15:32:21;transmitting
-4;2021-11-25T11:23:05;reintermediate
-5;2021-11-24T20:11:19;programming
-6;2021-11-25T01:38:41;Fresh cross-platform
-7;2021-11-24T20:44:14;Sausages
-8;2021-11-25T08:36:05;indigo synthesize
-9;2021-11-24T20:15:36;Savings feed
-10;2021-11-25T02:48:18;online system-worthy eyeballs
+id;comment_date;content;user_id
+1;2021-11-24T17:05:47;Arkansas purple;1
+2;2021-11-25T01:47:51;CSS circuit;2
+3;2021-11-24T15:32:21;transmitting;1
+4;2021-11-25T11:23:05;reintermediate;1
+5;2021-11-24T20:11:19;programming;1
+6;2021-11-25T01:38:41;Fresh cross-platform;1
+7;2021-11-24T20:44:14;Sausages;2
+8;2021-11-25T08:36:05;indigo synthesize;1
+9;2021-11-24T20:15:36;Savings feed;2
+10;2021-11-25T02:48:18;online system-worthy eyeballs;1

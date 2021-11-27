@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,7 +48,7 @@ public class RatingResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/ratings")
-    public ResponseEntity<Rating> createRating(@RequestBody Rating rating) throws URISyntaxException {
+    public ResponseEntity<Rating> createRating(@Valid @RequestBody Rating rating) throws URISyntaxException {
         log.debug("REST request to save Rating : {}", rating);
         if (rating.getId() != null) {
             throw new BadRequestAlertException("A new rating cannot already have an ID", ENTITY_NAME, "idexists");
@@ -69,8 +71,10 @@ public class RatingResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/ratings/{id}")
-    public ResponseEntity<Rating> updateRating(@PathVariable(value = "id", required = false) final Long id, @RequestBody Rating rating)
-        throws URISyntaxException {
+    public ResponseEntity<Rating> updateRating(
+        @PathVariable(value = "id", required = false) final Long id,
+        @Valid @RequestBody Rating rating
+    ) throws URISyntaxException {
         log.debug("REST request to update Rating : {}, {}", id, rating);
         if (rating.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -104,7 +108,7 @@ public class RatingResource {
     @PatchMapping(value = "/ratings/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Rating> partialUpdateRating(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody Rating rating
+        @NotNull @RequestBody Rating rating
     ) throws URISyntaxException {
         log.debug("REST request to partial update Rating partially : {}, {}", id, rating);
         if (rating.getId() == null) {

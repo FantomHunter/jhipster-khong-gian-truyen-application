@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.codehunter.khonggiantruyen.IntegrationTest;
 import com.codehunter.khonggiantruyen.domain.Like;
+import com.codehunter.khonggiantruyen.domain.User;
 import com.codehunter.khonggiantruyen.repository.LikeRepository;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -59,6 +60,11 @@ class LikeResourceIT {
      */
     public static Like createEntity(EntityManager em) {
         Like like = new Like().likeDate(DEFAULT_LIKE_DATE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        like.setUser(user);
         return like;
     }
 
@@ -70,6 +76,11 @@ class LikeResourceIT {
      */
     public static Like createUpdatedEntity(EntityManager em) {
         Like like = new Like().likeDate(UPDATED_LIKE_DATE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        like.setUser(user);
         return like;
     }
 

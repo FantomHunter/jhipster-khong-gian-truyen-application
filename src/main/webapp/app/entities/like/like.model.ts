@@ -5,12 +5,12 @@ import { IProduct } from 'app/entities/product/product.model';
 export interface ILike {
   id?: number;
   likeDate?: dayjs.Dayjs | null;
-  user?: IUser | null;
+  user?: IUser;
   product?: IProduct | null;
 }
 
 export class Like implements ILike {
-  constructor(public id?: number, public likeDate?: dayjs.Dayjs | null, public user?: IUser | null, public product?: IProduct | null) {}
+  constructor(public id?: number, public likeDate?: dayjs.Dayjs | null, public user?: IUser, public product?: IProduct | null) {}
 }
 
 export function getLikeIdentifier(like: ILike): number | undefined {

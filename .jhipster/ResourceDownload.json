@@ -3,7 +3,8 @@
   "fields": [
     {
       "fieldName": "url",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "format",

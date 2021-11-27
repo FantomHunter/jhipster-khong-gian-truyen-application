@@ -11,6 +11,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "like",
+      "relationshipValidateRules": "required",
       "relationshipName": "user",
       "otherEntityField": "login"
     },

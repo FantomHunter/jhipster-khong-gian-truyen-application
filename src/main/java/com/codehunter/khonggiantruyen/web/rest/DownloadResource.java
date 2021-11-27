@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,7 +48,7 @@ public class DownloadResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/downloads")
-    public ResponseEntity<Download> createDownload(@RequestBody Download download) throws URISyntaxException {
+    public ResponseEntity<Download> createDownload(@Valid @RequestBody Download download) throws URISyntaxException {
         log.debug("REST request to save Download : {}", download);
         if (download.getId() != null) {
             throw new BadRequestAlertException("A new download cannot already have an ID", ENTITY_NAME, "idexists");
@@ -71,7 +73,7 @@ public class DownloadResource {
     @PutMapping("/downloads/{id}")
     public ResponseEntity<Download> updateDownload(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody Download download
+        @Valid @RequestBody Download download
     ) throws URISyntaxException {
         log.debug("REST request to update Download : {}, {}", id, download);
         if (download.getId() == null) {
@@ -106,7 +108,7 @@ public class DownloadResource {
     @PatchMapping(value = "/downloads/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Download> partialUpdateDownload(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody Download download
+        @NotNull @RequestBody Download download
     ) throws URISyntaxException {
         log.debug("REST request to partial update Download partially : {}, {}", id, download);
         if (download.getId() == null) {

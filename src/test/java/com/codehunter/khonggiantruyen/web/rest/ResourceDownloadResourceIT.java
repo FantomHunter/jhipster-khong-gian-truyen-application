@@ -121,6 +121,25 @@ class ResourceDownloadResourceIT {
 
     @Test
     @Transactional
+    void checkUrlIsRequired() throws Exception {
+        int databaseSizeBeforeTest = resourceDownloadRepository.findAll().size();
+        // set the field null
+        resourceDownload.setUrl(null);
+
+        // Create the ResourceDownload, which fails.
+
+        restResourceDownloadMockMvc
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resourceDownload))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<ResourceDownload> resourceDownloadList = resourceDownloadRepository.findAll();
+        assertThat(resourceDownloadList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllResourceDownloads() throws Exception {
         // Initialize the database
         resourceDownloadRepository.saveAndFlush(resourceDownload);

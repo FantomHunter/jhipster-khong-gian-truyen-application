@@ -8,13 +8,21 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
+import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
@@ -46,7 +54,7 @@ public class CommentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/comments")
-    public ResponseEntity<Comment> createComment(@RequestBody Comment comment) throws URISyntaxException {
+    public ResponseEntity<Comment> createComment(@Valid @RequestBody Comment comment) throws URISyntaxException {
         log.debug("REST request to save Comment : {}", comment);
         if (comment.getId() != null) {
             throw new BadRequestAlertException("A new comment cannot already have an ID", ENTITY_NAME, "idexists");
@@ -69,8 +77,10 @@ public class CommentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/comments/{id}")
-    public ResponseEntity<Comment> updateComment(@PathVariable(value = "id", required = false) final Long id, @RequestBody Comment comment)
-        throws URISyntaxException {
+    public ResponseEntity<Comment> updateComment(
+        @PathVariable(value = "id", required = false) final Long id,
+        @Valid @RequestBody Comment comment
+    ) throws URISyntaxException {
         log.debug("REST request to update Comment : {}, {}", id, comment);
         if (comment.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -104,7 +114,7 @@ public class CommentResource {
     @PatchMapping(value = "/comments/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Comment> partialUpdateComment(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody Comment comment
+        @NotNull @RequestBody Comment comment
     ) throws URISyntaxException {
         log.debug("REST request to partial update Comment partially : {}, {}", id, comment);
         if (comment.getId() == null) {
@@ -141,12 +151,15 @@ public class CommentResource {
     /**
      * {@code GET  /comments} : get all the comments.
      *
+     * @param pageable the pagination information.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of comments in body.
      */
     @GetMapping("/comments")
-    public List<Comment> getAllComments() {
-        log.debug("REST request to get all Comments");
-        return commentRepository.findAll();
+    public ResponseEntity<List<Comment>> getAllComments(Pageable pageable) {
+        log.debug("REST request to get a page of Comments");
+        Page<Comment> page = commentRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**

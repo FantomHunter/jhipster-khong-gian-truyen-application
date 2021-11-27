@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.codehunter.khonggiantruyen.IntegrationTest;
 import com.codehunter.khonggiantruyen.domain.Rating;
+import com.codehunter.khonggiantruyen.domain.User;
 import com.codehunter.khonggiantruyen.repository.RatingRepository;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -62,6 +63,11 @@ class RatingResourceIT {
      */
     public static Rating createEntity(EntityManager em) {
         Rating rating = new Rating().ratingDate(DEFAULT_RATING_DATE).value(DEFAULT_VALUE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        rating.setUser(user);
         return rating;
     }
 
@@ -73,6 +79,11 @@ class RatingResourceIT {
      */
     public static Rating createUpdatedEntity(EntityManager em) {
         Rating rating = new Rating().ratingDate(UPDATED_RATING_DATE).value(UPDATED_VALUE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        rating.setUser(user);
         return rating;
     }
 

@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,7 +54,7 @@ public class ResourceDownloadResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/resource-downloads")
-    public ResponseEntity<ResourceDownload> createResourceDownload(@RequestBody ResourceDownload resourceDownload)
+    public ResponseEntity<ResourceDownload> createResourceDownload(@Valid @RequestBody ResourceDownload resourceDownload)
         throws URISyntaxException {
         log.debug("REST request to save ResourceDownload : {}", resourceDownload);
         if (resourceDownload.getId() != null) {
@@ -78,7 +80,7 @@ public class ResourceDownloadResource {
     @PutMapping("/resource-downloads/{id}")
     public ResponseEntity<ResourceDownload> updateResourceDownload(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody ResourceDownload resourceDownload
+        @Valid @RequestBody ResourceDownload resourceDownload
     ) throws URISyntaxException {
         log.debug("REST request to update ResourceDownload : {}, {}", id, resourceDownload);
         if (resourceDownload.getId() == null) {
@@ -113,7 +115,7 @@ public class ResourceDownloadResource {
     @PatchMapping(value = "/resource-downloads/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<ResourceDownload> partialUpdateResourceDownload(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody ResourceDownload resourceDownload
+        @NotNull @RequestBody ResourceDownload resourceDownload
     ) throws URISyntaxException {
         log.debug("REST request to partial update ResourceDownload partially : {}, {}", id, resourceDownload);
         if (resourceDownload.getId() == null) {

@@ -18,7 +18,7 @@ entity Product {
 }
 
 entity Author {
-	name String
+	name String required
 }
 
 entity Rating {
@@ -28,7 +28,7 @@ entity Rating {
 
 entity Comment {
 	commentDate Instant
-    content String
+    content String required
 }
 
 entity Like {
@@ -40,7 +40,7 @@ entity Download {
 }
 
 entity ResourceDownload {
-	url String
+	url String required
     format FormatType
 }
 
@@ -59,10 +59,10 @@ relationship OneToMany {
     ResourceDownload to Download{resource}
 }
 relationship ManyToOne {
-  Like{user(login)} to User,
-  Comment{user(login)} to User,
-  Rating{user(login)} to User,
-  Download{user(login)} to User,
+  Like{user(login) required} to User,
+  Comment{user(login) required} to User,
+  Rating{user(login) required} to User,
+  Download{user(login) required} to User,
 }
 
 relationship ManyToMany {
@@ -70,7 +70,7 @@ relationship ManyToMany {
 }
 // Set pagination options
 paginate ResourceDownload, Category with infinite-scroll
-paginate Product with pagination
+paginate Product, Comment with pagination
 
 
 

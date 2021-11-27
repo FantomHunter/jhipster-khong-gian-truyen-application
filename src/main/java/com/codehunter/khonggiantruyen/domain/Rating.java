@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,7 +29,8 @@ public class Rating implements Serializable {
     @Column(name = "value")
     private Float value;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private User user;
 
     @ManyToOne

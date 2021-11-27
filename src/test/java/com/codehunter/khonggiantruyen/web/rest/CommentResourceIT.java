@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.codehunter.khonggiantruyen.IntegrationTest;
 import com.codehunter.khonggiantruyen.domain.Comment;
+import com.codehunter.khonggiantruyen.domain.User;
 import com.codehunter.khonggiantruyen.repository.CommentRepository;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -62,6 +63,11 @@ class CommentResourceIT {
      */
     public static Comment createEntity(EntityManager em) {
         Comment comment = new Comment().commentDate(DEFAULT_COMMENT_DATE).content(DEFAULT_CONTENT);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        comment.setUser(user);
         return comment;
     }
 
@@ -73,6 +79,11 @@ class CommentResourceIT {
      */
     public static Comment createUpdatedEntity(EntityManager em) {
         Comment comment = new Comment().commentDate(UPDATED_COMMENT_DATE).content(UPDATED_CONTENT);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        comment.setUser(user);
         return comment;
     }
 
@@ -114,6 +125,23 @@ class CommentResourceIT {
         // Validate the Comment in the database
         List<Comment> commentList = commentRepository.findAll();
         assertThat(commentList).hasSize(databaseSizeBeforeCreate);
+    }
+
+    @Test
+    @Transactional
+    void checkContentIsRequired() throws Exception {
+        int databaseSizeBeforeTest = commentRepository.findAll().size();
+        // set the field null
+        comment.setContent(null);
+
+        // Create the Comment, which fails.
+
+        restCommentMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(comment)))
+            .andExpect(status().isBadRequest());
+
+        List<Comment> commentList = commentRepository.findAll();
+        assertThat(commentList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test

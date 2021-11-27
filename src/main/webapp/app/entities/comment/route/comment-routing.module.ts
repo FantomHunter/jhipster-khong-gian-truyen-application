@@ -11,6 +11,9 @@ const commentRoute: Routes = [
   {
     path: '',
     component: CommentComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
     canActivate: [UserRouteAccessService],
   },
   {

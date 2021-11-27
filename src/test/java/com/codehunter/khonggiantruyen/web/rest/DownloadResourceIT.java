@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.codehunter.khonggiantruyen.IntegrationTest;
 import com.codehunter.khonggiantruyen.domain.Download;
+import com.codehunter.khonggiantruyen.domain.User;
 import com.codehunter.khonggiantruyen.repository.DownloadRepository;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -59,6 +60,11 @@ class DownloadResourceIT {
      */
     public static Download createEntity(EntityManager em) {
         Download download = new Download().downloadDate(DEFAULT_DOWNLOAD_DATE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        download.setUser(user);
         return download;
     }
 
@@ -70,6 +76,11 @@ class DownloadResourceIT {
      */
     public static Download createUpdatedEntity(EntityManager em) {
         Download download = new Download().downloadDate(UPDATED_DOWNLOAD_DATE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        download.setUser(user);
         return download;
     }
 

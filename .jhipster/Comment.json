@@ -7,7 +7,8 @@
     },
     {
       "fieldName": "content",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     }
   ],
   "relationships": [
@@ -15,6 +16,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "comment",
+      "relationshipValidateRules": "required",
       "relationshipName": "user",
       "otherEntityField": "login"
     },
@@ -27,7 +29,7 @@
   ],
   "entityTableName": "comment",
   "dto": "no",
-  "pagination": "no",
+  "pagination": "pagination",
   "service": "no",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,

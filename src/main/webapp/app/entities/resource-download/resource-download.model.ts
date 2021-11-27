@@ -4,7 +4,7 @@ import { FormatType } from 'app/entities/enumerations/format-type.model';
 
 export interface IResourceDownload {
   id?: number;
-  url?: string | null;
+  url?: string;
   format?: FormatType | null;
   downloads?: IDownload[] | null;
   product?: IProduct | null;
@@ -13,7 +13,7 @@ export interface IResourceDownload {
 export class ResourceDownload implements IResourceDownload {
   constructor(
     public id?: number,
-    public url?: string | null,
+    public url?: string,
     public format?: FormatType | null,
     public downloads?: IDownload[] | null,
     public product?: IProduct | null

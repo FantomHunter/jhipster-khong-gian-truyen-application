@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,7 +48,7 @@ public class LikeResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/likes")
-    public ResponseEntity<Like> createLike(@RequestBody Like like) throws URISyntaxException {
+    public ResponseEntity<Like> createLike(@Valid @RequestBody Like like) throws URISyntaxException {
         log.debug("REST request to save Like : {}", like);
         if (like.getId() != null) {
             throw new BadRequestAlertException("A new like cannot already have an ID", ENTITY_NAME, "idexists");
@@ -69,7 +71,7 @@ public class LikeResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/likes/{id}")
-    public ResponseEntity<Like> updateLike(@PathVariable(value = "id", required = false) final Long id, @RequestBody Like like)
+    public ResponseEntity<Like> updateLike(@PathVariable(value = "id", required = false) final Long id, @Valid @RequestBody Like like)
         throws URISyntaxException {
         log.debug("REST request to update Like : {}, {}", id, like);
         if (like.getId() == null) {
@@ -102,8 +104,10 @@ public class LikeResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/likes/{id}", consumes = { "application/json", "application/merge-patch+json" })
-    public ResponseEntity<Like> partialUpdateLike(@PathVariable(value = "id", required = false) final Long id, @RequestBody Like like)
-        throws URISyntaxException {
+    public ResponseEntity<Like> partialUpdateLike(
+        @PathVariable(value = "id", required = false) final Long id,
+        @NotNull @RequestBody Like like
+    ) throws URISyntaxException {
         log.debug("REST request to partial update Like partially : {}, {}", id, like);
         if (like.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -25,7 +26,8 @@ public class Download implements Serializable {
     @Column(name = "download_date")
     private Instant downloadDate;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private User user;
 
     @ManyToOne

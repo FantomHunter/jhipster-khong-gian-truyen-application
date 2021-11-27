@@ -112,6 +112,23 @@ class AuthorResourceIT {
 
     @Test
     @Transactional
+    void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = authorRepository.findAll().size();
+        // set the field null
+        author.setName(null);
+
+        // Create the Author, which fails.
+
+        restAuthorMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(author)))
+            .andExpect(status().isBadRequest());
+
+        List<Author> authorList = authorRepository.findAll();
+        assertThat(authorList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllAuthors() throws Exception {
         // Initialize the database
         authorRepository.saveAndFlush(author);

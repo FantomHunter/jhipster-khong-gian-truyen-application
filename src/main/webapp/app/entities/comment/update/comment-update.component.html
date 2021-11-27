@@ -33,12 +33,21 @@
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="khongGianTruyenApp.comment.content" for="field_content">Content</label>
           <input type="text" class="form-control" name="content" id="field_content" data-cy="content" formControlName="content" />
+          <div *ngIf="editForm.get('content')!.invalid && (editForm.get('content')!.dirty || editForm.get('content')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('content')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
         </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="khongGianTruyenApp.comment.user" for="field_user">User</label>
           <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('user')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
               *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
@@ -46,6 +55,11 @@
               {{ userOption.login }}
             </option>
           </select>
+        </div>
+        <div *ngIf="editForm.get(['user'])!.invalid && (editForm.get(['user'])!.dirty || editForm.get(['user'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['user'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
         </div>
 
         <div class="form-group">

@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,7 +48,7 @@ public class AuthorResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/authors")
-    public ResponseEntity<Author> createAuthor(@RequestBody Author author) throws URISyntaxException {
+    public ResponseEntity<Author> createAuthor(@Valid @RequestBody Author author) throws URISyntaxException {
         log.debug("REST request to save Author : {}", author);
         if (author.getId() != null) {
             throw new BadRequestAlertException("A new author cannot already have an ID", ENTITY_NAME, "idexists");
@@ -69,8 +71,10 @@ public class AuthorResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/authors/{id}")
-    public ResponseEntity<Author> updateAuthor(@PathVariable(value = "id", required = false) final Long id, @RequestBody Author author)
-        throws URISyntaxException {
+    public ResponseEntity<Author> updateAuthor(
+        @PathVariable(value = "id", required = false) final Long id,
+        @Valid @RequestBody Author author
+    ) throws URISyntaxException {
         log.debug("REST request to update Author : {}, {}", id, author);
         if (author.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -104,7 +108,7 @@ public class AuthorResource {
     @PatchMapping(value = "/authors/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Author> partialUpdateAuthor(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody Author author
+        @NotNull @RequestBody Author author
     ) throws URISyntaxException {
         log.debug("REST request to partial update Author partially : {}, {}", id, author);
         if (author.getId() == null) {

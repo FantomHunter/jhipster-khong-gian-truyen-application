@@ -5,7 +5,7 @@ import { IResourceDownload } from 'app/entities/resource-download/resource-downl
 export interface IDownload {
   id?: number;
   downloadDate?: dayjs.Dayjs | null;
-  user?: IUser | null;
+  user?: IUser;
   resource?: IResourceDownload | null;
 }
 
@@ -13,7 +13,7 @@ export class Download implements IDownload {
   constructor(
     public id?: number,
     public downloadDate?: dayjs.Dayjs | null,
-    public user?: IUser | null,
+    public user?: IUser,
     public resource?: IResourceDownload | null
   ) {}
 }
