@@ -6,16 +6,11 @@ export interface IDownload {
   id?: number;
   downloadDate?: dayjs.Dayjs | null;
   user?: IUser;
-  resource?: IResourceDownload | null;
+  resource?: IResourceDownload;
 }
 
 export class Download implements IDownload {
-  constructor(
-    public id?: number,
-    public downloadDate?: dayjs.Dayjs | null,
-    public user?: IUser,
-    public resource?: IResourceDownload | null
-  ) {}
+  constructor(public id?: number, public downloadDate?: dayjs.Dayjs | null, public user?: IUser, public resource?: IResourceDownload) {}
 }
 
 export function getDownloadIdentifier(download: IDownload): number | undefined {

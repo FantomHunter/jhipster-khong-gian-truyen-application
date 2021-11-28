@@ -24,8 +24,7 @@
     },
     {
       "fieldName": "type",
-      "fieldType": "FormatType",
-      "fieldValues": "PRC,PDF,EPUB,MOBI,AZW3"
+      "fieldType": "String"
     },
     {
       "fieldName": "totalChapter",

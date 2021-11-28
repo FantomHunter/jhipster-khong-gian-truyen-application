@@ -38,7 +38,8 @@ public class ResourceDownload implements Serializable {
     @JsonIgnoreProperties(value = { "user", "resource" }, allowSetters = true)
     private Set<Download> downloads = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties(value = { "author", "resourceDownloads", "likes", "comments", "ratings", "categories" }, allowSetters = true)
     private Product product;
 

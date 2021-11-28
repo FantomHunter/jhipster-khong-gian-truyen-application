@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.codehunter.khonggiantruyen.IntegrationTest;
+import com.codehunter.khonggiantruyen.domain.Product;
 import com.codehunter.khonggiantruyen.domain.ResourceDownload;
 import com.codehunter.khonggiantruyen.domain.enumeration.FormatType;
 import com.codehunter.khonggiantruyen.repository.ResourceDownloadRepository;
@@ -61,6 +62,16 @@ class ResourceDownloadResourceIT {
      */
     public static ResourceDownload createEntity(EntityManager em) {
         ResourceDownload resourceDownload = new ResourceDownload().url(DEFAULT_URL).format(DEFAULT_FORMAT);
+        // Add required entity
+        Product product;
+        if (TestUtil.findAll(em, Product.class).isEmpty()) {
+            product = ProductResourceIT.createEntity(em);
+            em.persist(product);
+            em.flush();
+        } else {
+            product = TestUtil.findAll(em, Product.class).get(0);
+        }
+        resourceDownload.setProduct(product);
         return resourceDownload;
     }
 
@@ -72,6 +83,16 @@ class ResourceDownloadResourceIT {
      */
     public static ResourceDownload createUpdatedEntity(EntityManager em) {
         ResourceDownload resourceDownload = new ResourceDownload().url(UPDATED_URL).format(UPDATED_FORMAT);
+        // Add required entity
+        Product product;
+        if (TestUtil.findAll(em, Product.class).isEmpty()) {
+            product = ProductResourceIT.createUpdatedEntity(em);
+            em.persist(product);
+            em.flush();
+        } else {
+            product = TestUtil.findAll(em, Product.class).get(0);
+        }
+        resourceDownload.setProduct(product);
         return resourceDownload;
     }
 

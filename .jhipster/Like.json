@@ -19,6 +19,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "product",
       "otherEntityRelationshipName": "like",
+      "relationshipValidateRules": "required",
       "relationshipName": "product"
     }
   ],

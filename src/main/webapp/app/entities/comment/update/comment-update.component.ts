@@ -30,7 +30,7 @@ export class CommentUpdateComponent implements OnInit {
     commentDate: [],
     content: [null, [Validators.required]],
     user: [null, Validators.required],
-    product: [],
+    product: [null, Validators.required],
   });
 
   constructor(

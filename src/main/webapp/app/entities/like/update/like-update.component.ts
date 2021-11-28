@@ -29,7 +29,7 @@ export class LikeUpdateComponent implements OnInit {
     id: [],
     likeDate: [],
     user: [null, Validators.required],
-    product: [],
+    product: [null, Validators.required],
   });
 
   constructor(

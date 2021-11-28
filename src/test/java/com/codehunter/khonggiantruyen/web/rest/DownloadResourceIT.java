@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.codehunter.khonggiantruyen.IntegrationTest;
 import com.codehunter.khonggiantruyen.domain.Download;
+import com.codehunter.khonggiantruyen.domain.ResourceDownload;
 import com.codehunter.khonggiantruyen.domain.User;
 import com.codehunter.khonggiantruyen.repository.DownloadRepository;
 import java.time.Instant;
@@ -65,6 +66,16 @@ class DownloadResourceIT {
         em.persist(user);
         em.flush();
         download.setUser(user);
+        // Add required entity
+        ResourceDownload resourceDownload;
+        if (TestUtil.findAll(em, ResourceDownload.class).isEmpty()) {
+            resourceDownload = ResourceDownloadResourceIT.createEntity(em);
+            em.persist(resourceDownload);
+            em.flush();
+        } else {
+            resourceDownload = TestUtil.findAll(em, ResourceDownload.class).get(0);
+        }
+        download.setResource(resourceDownload);
         return download;
     }
 
@@ -81,6 +92,16 @@ class DownloadResourceIT {
         em.persist(user);
         em.flush();
         download.setUser(user);
+        // Add required entity
+        ResourceDownload resourceDownload;
+        if (TestUtil.findAll(em, ResourceDownload.class).isEmpty()) {
+            resourceDownload = ResourceDownloadResourceIT.createUpdatedEntity(em);
+            em.persist(resourceDownload);
+            em.flush();
+        } else {
+            resourceDownload = TestUtil.findAll(em, ResourceDownload.class).get(0);
+        }
+        download.setResource(resourceDownload);
         return download;
     }
 

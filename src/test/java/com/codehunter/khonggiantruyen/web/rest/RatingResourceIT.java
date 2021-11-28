@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.codehunter.khonggiantruyen.IntegrationTest;
+import com.codehunter.khonggiantruyen.domain.Product;
 import com.codehunter.khonggiantruyen.domain.Rating;
 import com.codehunter.khonggiantruyen.domain.User;
 import com.codehunter.khonggiantruyen.repository.RatingRepository;
@@ -68,6 +69,16 @@ class RatingResourceIT {
         em.persist(user);
         em.flush();
         rating.setUser(user);
+        // Add required entity
+        Product product;
+        if (TestUtil.findAll(em, Product.class).isEmpty()) {
+            product = ProductResourceIT.createEntity(em);
+            em.persist(product);
+            em.flush();
+        } else {
+            product = TestUtil.findAll(em, Product.class).get(0);
+        }
+        rating.setRating(product);
         return rating;
     }
 
@@ -84,6 +95,16 @@ class RatingResourceIT {
         em.persist(user);
         em.flush();
         rating.setUser(user);
+        // Add required entity
+        Product product;
+        if (TestUtil.findAll(em, Product.class).isEmpty()) {
+            product = ProductResourceIT.createUpdatedEntity(em);
+            em.persist(product);
+            em.flush();
+        } else {
+            product = TestUtil.findAll(em, Product.class).get(0);
+        }
+        rating.setRating(product);
         return rating;
     }
 

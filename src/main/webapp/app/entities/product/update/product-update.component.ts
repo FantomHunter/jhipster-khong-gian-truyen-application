@@ -15,7 +15,6 @@ import { AuthorService } from 'app/entities/author/service/author.service';
 import { ICategory } from 'app/entities/category/category.model';
 import { CategoryService } from 'app/entities/category/service/category.service';
 import { Status } from 'app/entities/enumerations/status.model';
-import { FormatType } from 'app/entities/enumerations/format-type.model';
 
 @Component({
   selector: 'jhi-product-update',
@@ -24,7 +23,6 @@ import { FormatType } from 'app/entities/enumerations/format-type.model';
 export class ProductUpdateComponent implements OnInit {
   isSaving = false;
   statusValues = Object.keys(Status);
-  formatTypeValues = Object.keys(FormatType);
 
   authorsCollection: IAuthor[] = [];
   categoriesSharedCollection: ICategory[] = [];

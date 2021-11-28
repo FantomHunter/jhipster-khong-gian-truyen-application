@@ -19,6 +19,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "resourceDownload",
       "otherEntityRelationshipName": "download",
+      "relationshipValidateRules": "required",
       "relationshipName": "resource"
     }
   ],

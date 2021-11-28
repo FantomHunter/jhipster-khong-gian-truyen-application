@@ -24,6 +24,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "product",
       "otherEntityRelationshipName": "comment",
+      "relationshipValidateRules": "required",
       "relationshipName": "product"
     }
   ],

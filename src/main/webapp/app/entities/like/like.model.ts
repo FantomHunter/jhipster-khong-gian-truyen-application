@@ -6,11 +6,11 @@ export interface ILike {
   id?: number;
   likeDate?: dayjs.Dayjs | null;
   user?: IUser;
-  product?: IProduct | null;
+  product?: IProduct;
 }
 
 export class Like implements ILike {
-  constructor(public id?: number, public likeDate?: dayjs.Dayjs | null, public user?: IUser, public product?: IProduct | null) {}
+  constructor(public id?: number, public likeDate?: dayjs.Dayjs | null, public user?: IUser, public product?: IProduct) {}
 }
 
 export function getLikeIdentifier(like: ILike): number | undefined {

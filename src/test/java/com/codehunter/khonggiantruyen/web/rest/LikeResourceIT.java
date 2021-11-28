@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.codehunter.khonggiantruyen.IntegrationTest;
 import com.codehunter.khonggiantruyen.domain.Like;
+import com.codehunter.khonggiantruyen.domain.Product;
 import com.codehunter.khonggiantruyen.domain.User;
 import com.codehunter.khonggiantruyen.repository.LikeRepository;
 import java.time.Instant;
@@ -65,6 +66,16 @@ class LikeResourceIT {
         em.persist(user);
         em.flush();
         like.setUser(user);
+        // Add required entity
+        Product product;
+        if (TestUtil.findAll(em, Product.class).isEmpty()) {
+            product = ProductResourceIT.createEntity(em);
+            em.persist(product);
+            em.flush();
+        } else {
+            product = TestUtil.findAll(em, Product.class).get(0);
+        }
+        like.setProduct(product);
         return like;
     }
 
@@ -81,6 +92,16 @@ class LikeResourceIT {
         em.persist(user);
         em.flush();
         like.setUser(user);
+        // Add required entity
+        Product product;
+        if (TestUtil.findAll(em, Product.class).isEmpty()) {
+            product = ProductResourceIT.createUpdatedEntity(em);
+            em.persist(product);
+            em.flush();
+        } else {
+            product = TestUtil.findAll(em, Product.class).get(0);
+        }
+        like.setProduct(product);
         return like;
     }
 

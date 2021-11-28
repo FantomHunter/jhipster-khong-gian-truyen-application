@@ -40,7 +40,7 @@
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="khongGianTruyenApp.resourceDownload.product" for="field_product">Product</label>
           <select class="form-control" id="field_product" data-cy="product" name="product" formControlName="product">
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('product')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="productOption.id === editForm.get('product')!.value?.id ? editForm.get('product')!.value : productOption"
               *ngFor="let productOption of productsSharedCollection; trackBy: trackProductById"
@@ -48,6 +48,15 @@
               {{ productOption.id }}
             </option>
           </select>
+        </div>
+        <div *ngIf="editForm.get(['product'])!.invalid && (editForm.get(['product'])!.dirty || editForm.get(['product'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['product'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
         </div>
       </div>
 

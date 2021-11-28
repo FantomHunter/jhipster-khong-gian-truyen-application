@@ -51,7 +51,7 @@
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="khongGianTruyenApp.download.resource" for="field_resource">Resource</label>
           <select class="form-control" id="field_resource" data-cy="resource" name="resource" formControlName="resource">
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('resource')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="
                 resourceDownloadOption.id === editForm.get('resource')!.value?.id ? editForm.get('resource')!.value : resourceDownloadOption
@@ -61,6 +61,15 @@
               {{ resourceDownloadOption.id }}
             </option>
           </select>
+        </div>
+        <div *ngIf="editForm.get(['resource'])!.invalid && (editForm.get(['resource'])!.dirty || editForm.get(['resource'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['resource'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
         </div>
       </div>
 

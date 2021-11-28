@@ -7,7 +7,7 @@ export interface IComment {
   commentDate?: dayjs.Dayjs | null;
   content?: string;
   user?: IUser;
-  product?: IProduct | null;
+  product?: IProduct;
 }
 
 export class Comment implements IComment {
@@ -16,7 +16,7 @@ export class Comment implements IComment {
     public commentDate?: dayjs.Dayjs | null,
     public content?: string,
     public user?: IUser,
-    public product?: IProduct | null
+    public product?: IProduct
   ) {}
 }
 

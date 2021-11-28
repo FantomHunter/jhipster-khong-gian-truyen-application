@@ -7,7 +7,7 @@ export interface IRating {
   ratingDate?: dayjs.Dayjs | null;
   value?: number | null;
   user?: IUser;
-  rating?: IProduct | null;
+  rating?: IProduct;
 }
 
 export class Rating implements IRating {
@@ -16,7 +16,7 @@ export class Rating implements IRating {
     public ratingDate?: dayjs.Dayjs | null,
     public value?: number | null,
     public user?: IUser,
-    public rating?: IProduct | null
+    public rating?: IProduct
   ) {}
 }
 

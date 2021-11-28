@@ -70,7 +70,7 @@
           <td>{{ product.imageUrl }}</td>
           <td>{{ product.publishDate | formatMediumDatetime }}</td>
           <td jhiTranslate="{{ 'khongGianTruyenApp.Status.' + product.status }}">{{ product.status }}</td>
-          <td jhiTranslate="{{ 'khongGianTruyenApp.FormatType.' + product.type }}">{{ product.type }}</td>
+          <td>{{ product.type }}</td>
           <td>{{ product.totalChapter }}</td>
           <td>
             <div *ngIf="product.author">

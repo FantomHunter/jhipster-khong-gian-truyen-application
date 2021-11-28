@@ -13,7 +13,7 @@ entity Product {
     imageUrl String
     publishDate Instant
     status Status
-    type FormatType
+    type String
     totalChapter Long
 }
 
@@ -52,11 +52,11 @@ relationship OneToOne {
 	Product{author} to Author
 }
 relationship OneToMany {
-	Product to ResourceDownload{product},
-	Product to Like{product},
-    Product to Comment{product},
-    Product to Rating{rating}
-    ResourceDownload to Download{resource}
+	Product to ResourceDownload{product required},
+	Product to Like{product required},
+    Product to Comment{product required},
+    Product to Rating{rating required}
+    ResourceDownload to Download{resource required}
 }
 relationship ManyToOne {
   Like{user(login) required} to User,

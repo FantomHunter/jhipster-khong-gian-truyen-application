@@ -29,7 +29,7 @@ export class DownloadUpdateComponent implements OnInit {
     id: [],
     downloadDate: [],
     user: [null, Validators.required],
-    resource: [],
+    resource: [null, Validators.required],
   });
 
   constructor(

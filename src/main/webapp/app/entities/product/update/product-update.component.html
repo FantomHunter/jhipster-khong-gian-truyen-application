@@ -64,12 +64,7 @@
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="khongGianTruyenApp.product.type" for="field_type">Type</label>
-          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
-            <option [ngValue]="null">{{ 'khongGianTruyenApp.FormatType.null' | translate }}</option>
-            <option *ngFor="let formatType of formatTypeValues" [value]="formatType">
-              {{ 'khongGianTruyenApp.FormatType.' + formatType | translate }}
-            </option>
-          </select>
+          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
         </div>
 
         <div class="form-group">

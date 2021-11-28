@@ -30,7 +30,8 @@ public class Download implements Serializable {
     @NotNull
     private User user;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties(value = { "downloads", "product" }, allowSetters = true)
     private ResourceDownload resource;
 

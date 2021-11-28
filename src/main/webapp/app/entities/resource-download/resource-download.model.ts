@@ -7,7 +7,7 @@ export interface IResourceDownload {
   url?: string;
   format?: FormatType | null;
   downloads?: IDownload[] | null;
-  product?: IProduct | null;
+  product?: IProduct;
 }
 
 export class ResourceDownload implements IResourceDownload {
@@ -16,7 +16,7 @@ export class ResourceDownload implements IResourceDownload {
     public url?: string,
     public format?: FormatType | null,
     public downloads?: IDownload[] | null,
-    public product?: IProduct | null
+    public product?: IProduct
   ) {}
 }
 

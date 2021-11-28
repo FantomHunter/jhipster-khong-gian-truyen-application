@@ -6,7 +6,6 @@ import { IComment } from 'app/entities/comment/comment.model';
 import { IRating } from 'app/entities/rating/rating.model';
 import { ICategory } from 'app/entities/category/category.model';
 import { Status } from 'app/entities/enumerations/status.model';
-import { FormatType } from 'app/entities/enumerations/format-type.model';
 
 export interface IProduct {
   id?: number;
@@ -15,7 +14,7 @@ export interface IProduct {
   imageUrl?: string | null;
   publishDate?: dayjs.Dayjs | null;
   status?: Status | null;
-  type?: FormatType | null;
+  type?: string | null;
   totalChapter?: number | null;
   author?: IAuthor | null;
   resourceDownloads?: IResourceDownload[] | null;
@@ -33,7 +32,7 @@ export class Product implements IProduct {
     public imageUrl?: string | null,
     public publishDate?: dayjs.Dayjs | null,
     public status?: Status | null,
-    public type?: FormatType | null,
+    public type?: string | null,
     public totalChapter?: number | null,
     public author?: IAuthor | null,
     public resourceDownloads?: IResourceDownload[] | null,

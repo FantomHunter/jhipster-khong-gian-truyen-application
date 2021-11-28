@@ -23,6 +23,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "product",
       "otherEntityRelationshipName": "resourceDownload",
+      "relationshipValidateRules": "required",
       "relationshipName": "product"
     }
   ],

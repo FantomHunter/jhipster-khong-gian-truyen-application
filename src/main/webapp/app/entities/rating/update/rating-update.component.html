@@ -54,7 +54,7 @@
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="khongGianTruyenApp.rating.rating" for="field_rating">Rating</label>
           <select class="form-control" id="field_rating" data-cy="rating" name="rating" formControlName="rating">
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('rating')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="productOption.id === editForm.get('rating')!.value?.id ? editForm.get('rating')!.value : productOption"
               *ngFor="let productOption of productsSharedCollection; trackBy: trackProductById"
@@ -62,6 +62,11 @@
               {{ productOption.id }}
             </option>
           </select>
+        </div>
+        <div *ngIf="editForm.get(['rating'])!.invalid && (editForm.get(['rating'])!.dirty || editForm.get(['rating'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['rating'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
         </div>
       </div>
 

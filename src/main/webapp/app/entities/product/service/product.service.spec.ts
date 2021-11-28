@@ -4,7 +4,6 @@ import * as dayjs from 'dayjs';
 
 import { DATE_TIME_FORMAT } from 'app/config/input.constants';
 import { Status } from 'app/entities/enumerations/status.model';
-import { FormatType } from 'app/entities/enumerations/format-type.model';
 import { IProduct, Product } from '../product.model';
 
 import { ProductService } from './product.service';
@@ -32,7 +31,7 @@ describe('Product Service', () => {
       imageUrl: 'AAAAAAA',
       publishDate: currentDate,
       status: Status.COMPLETED,
-      type: FormatType.PRC,
+      type: 'AAAAAAA',
       totalChapter: 0,
     };
   });

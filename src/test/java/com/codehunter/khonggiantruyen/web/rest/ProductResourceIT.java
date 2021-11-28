@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.codehunter.khonggiantruyen.IntegrationTest;
 import com.codehunter.khonggiantruyen.domain.Product;
-import com.codehunter.khonggiantruyen.domain.enumeration.FormatType;
 import com.codehunter.khonggiantruyen.domain.enumeration.Status;
 import com.codehunter.khonggiantruyen.repository.ProductRepository;
 import java.time.Instant;
@@ -56,8 +55,8 @@ class ProductResourceIT {
     private static final Status DEFAULT_STATUS = Status.COMPLETED;
     private static final Status UPDATED_STATUS = Status.STOPPED;
 
-    private static final FormatType DEFAULT_TYPE = FormatType.PRC;
-    private static final FormatType UPDATED_TYPE = FormatType.PDF;
+    private static final String DEFAULT_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_TYPE = "BBBBBBBBBB";
 
     private static final Long DEFAULT_TOTAL_CHAPTER = 1L;
     private static final Long UPDATED_TOTAL_CHAPTER = 2L;
@@ -180,7 +179,7 @@ class ProductResourceIT {
             .andExpect(jsonPath("$.[*].imageUrl").value(hasItem(DEFAULT_IMAGE_URL)))
             .andExpect(jsonPath("$.[*].publishDate").value(hasItem(DEFAULT_PUBLISH_DATE.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
             .andExpect(jsonPath("$.[*].totalChapter").value(hasItem(DEFAULT_TOTAL_CHAPTER.intValue())));
     }
 
@@ -219,7 +218,7 @@ class ProductResourceIT {
             .andExpect(jsonPath("$.imageUrl").value(DEFAULT_IMAGE_URL))
             .andExpect(jsonPath("$.publishDate").value(DEFAULT_PUBLISH_DATE.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE))
             .andExpect(jsonPath("$.totalChapter").value(DEFAULT_TOTAL_CHAPTER.intValue()));
     }
 

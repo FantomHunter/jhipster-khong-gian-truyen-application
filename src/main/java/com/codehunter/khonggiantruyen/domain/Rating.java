@@ -33,7 +33,8 @@ public class Rating implements Serializable {
     @NotNull
     private User user;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties(value = { "author", "resourceDownloads", "likes", "comments", "ratings", "categories" }, allowSetters = true)
     private Product rating;
 

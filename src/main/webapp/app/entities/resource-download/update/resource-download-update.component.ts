@@ -25,7 +25,7 @@ export class ResourceDownloadUpdateComponent implements OnInit {
     id: [],
     url: [null, [Validators.required]],
     format: [],
-    product: [],
+    product: [null, Validators.required],
   });
 
   constructor(

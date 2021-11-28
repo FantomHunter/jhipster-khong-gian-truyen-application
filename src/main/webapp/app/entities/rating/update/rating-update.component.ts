@@ -30,7 +30,7 @@ export class RatingUpdateComponent implements OnInit {
     ratingDate: [],
     value: [],
     user: [null, Validators.required],
-    rating: [],
+    rating: [null, Validators.required],
   });
 
   constructor(

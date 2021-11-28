@@ -1,6 +1,5 @@
 package com.codehunter.khonggiantruyen.domain;
 
-import com.codehunter.khonggiantruyen.domain.enumeration.FormatType;
 import com.codehunter.khonggiantruyen.domain.enumeration.Status;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
@@ -42,9 +41,8 @@ public class Product implements Serializable {
     @Column(name = "status")
     private Status status;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private FormatType type;
+    private String type;
 
     @Column(name = "total_chapter")
     private Long totalChapter;
@@ -163,16 +161,16 @@ public class Product implements Serializable {
         this.status = status;
     }
 
-    public FormatType getType() {
+    public String getType() {
         return this.type;
     }
 
-    public Product type(FormatType type) {
+    public Product type(String type) {
         this.setType(type);
         return this;
     }
 
-    public void setType(FormatType type) {
+    public void setType(String type) {
         this.type = type;
     }
 

@@ -23,6 +23,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "product",
       "otherEntityRelationshipName": "rating",
+      "relationshipValidateRules": "required",
       "relationshipName": "rating"
     }
   ],
