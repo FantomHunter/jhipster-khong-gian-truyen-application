@@ -13,7 +13,7 @@
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
-    "prodDatabaseType": "mysql",
+    "prodDatabaseType": "postgresql",
     "searchEngine": false,
     "enableSwaggerCodegen": false,
     "messageBroker": false,

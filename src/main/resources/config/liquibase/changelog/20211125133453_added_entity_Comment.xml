@@ -11,7 +11,7 @@
     -->
     <changeSet id="20211125133453-1" author="jhipster">
         <createTable tableName="comment">
-            <column name="id" type="bigint" autoIncrement="true">
+            <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="comment_date" type="${datetimeType}">

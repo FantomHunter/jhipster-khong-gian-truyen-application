@@ -7,22 +7,22 @@ services:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,api-docs
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
-      - SPRING_DATASOURCE_URL=jdbc:mysql://khonggiantruyen-mysql:3306/khonggiantruyen?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-      - SPRING_LIQUIBASE_URL=jdbc:mysql://khonggiantruyen-mysql:3306/khonggiantruyen?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://khonggiantruyen-postgresql:5432/KhongGianTruyen
+      - SPRING_LIQUIBASE_URL=jdbc:postgresql://khonggiantruyen-postgresql:5432/KhongGianTruyen
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
       - 127.0.0.1:8080:8080
-  khonggiantruyen-mysql:
-    image: mysql:8.0.27
+  khonggiantruyen-postgresql:
+    image: postgres:13.5
     # volumes:
-    #   - ~/volumes/jhipster/KhongGianTruyen/mysql/:/var/lib/mysql/
+    #   - ~/volumes/jhipster/KhongGianTruyen/postgresql/:/var/lib/postgresql/data/
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_DATABASE=khonggiantruyen
+      - POSTGRES_USER=KhongGianTruyen
+      - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
-      - 127.0.0.1:3306:3306
-    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+      - 127.0.0.1:5432:5432

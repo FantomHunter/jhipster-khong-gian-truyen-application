@@ -11,7 +11,7 @@
     -->
     <changeSet id="20211125133452-1" author="jhipster">
         <createTable tableName="rating">
-            <column name="id" type="bigint" autoIncrement="true">
+            <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="rating_date" type="${datetimeType}">
