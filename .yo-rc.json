@@ -44,7 +44,10 @@
     "reactive": false,
     "enableGradleEnterprise": false,
     "entities": ["Product", "Author", "Rating", "Comment", "Like", "Download", "ResourceDownload", "Category"],
-    "lastLiquibaseTimestamp": 1637847297000
+    "lastLiquibaseTimestamp": 1637847297000,
+    "herokuAppName": "khong-gian-truyen",
+    "herokuDeployType": "jar",
+    "herokuJavaVersion": "17"
   },
   "git-provider": "GitHub",
   "git-company": "FantomHunter",

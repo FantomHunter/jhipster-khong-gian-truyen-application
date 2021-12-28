@@ -62,40 +62,6 @@ describe('Rating Management Update Component', () => {
       expect(userService.addUserToCollectionIfMissing).toHaveBeenCalledWith(userCollection, ...additionalUsers);
       expect(comp.usersSharedCollection).toEqual(expectedCollection);
     });
-
-    it('Should call Product query and add missing value', () => {
-      const rating: IRating = { id: 456 };
-      const rating: IProduct = { id: 99943 };
-      rating.rating = rating;
-
-      const productCollection: IProduct[] = [{ id: 53534 }];
-      jest.spyOn(productService, 'query').mockReturnValue(of(new HttpResponse({ body: productCollection })));
-      const additionalProducts = [rating];
-      const expectedCollection: IProduct[] = [...additionalProducts, ...productCollection];
-      jest.spyOn(productService, 'addProductToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ rating });
-      comp.ngOnInit();
-
-      expect(productService.query).toHaveBeenCalled();
-      expect(productService.addProductToCollectionIfMissing).toHaveBeenCalledWith(productCollection, ...additionalProducts);
-      expect(comp.productsSharedCollection).toEqual(expectedCollection);
-    });
-
-    it('Should update editForm', () => {
-      const rating: IRating = { id: 456 };
-      const user: IUser = { id: 36480 };
-      rating.user = user;
-      const rating: IProduct = { id: 53691 };
-      rating.rating = rating;
-
-      activatedRoute.data = of({ rating });
-      comp.ngOnInit();
-
-      expect(comp.editForm.value).toEqual(expect.objectContaining(rating));
-      expect(comp.usersSharedCollection).toContain(user);
-      expect(comp.productsSharedCollection).toContain(rating);
-    });
   });
 
   describe('save', () => {
