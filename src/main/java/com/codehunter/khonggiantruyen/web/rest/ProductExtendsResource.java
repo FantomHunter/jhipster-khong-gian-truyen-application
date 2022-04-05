@@ -3,13 +3,13 @@ package com.codehunter.khonggiantruyen.web.rest;
 import com.codehunter.khonggiantruyen.domain.Product;
 import com.codehunter.khonggiantruyen.domain.ProductWithLatestCommentDate;
 import com.codehunter.khonggiantruyen.repository.ProductExtendsRepository;
+import com.codehunter.khonggiantruyen.web.rest.dto.ProductPagingWithCommentRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +33,7 @@ public class ProductExtendsResource {
 
     @GetMapping("/products/new-comment")
     public ResponseEntity<List<Product>> getTopNewCommentedProducts(Pageable pageable) {
-        log.debug("REST request to get a page of Products");
+        log.debug("REST request to get a page of new commented Products");
         Page<ProductWithLatestCommentDate> page;
         page = productExtendsRepository.findAllNewsCommentedProduct(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
@@ -45,13 +45,16 @@ public class ProductExtendsResource {
     }
 
     @GetMapping("/products/comments")
-    public ResponseEntity<List<Product>> findAllProductWithComment(Pageable pageable) {
-        log.debug("REST request to get a page of Products");
+    public ResponseEntity<ProductPagingWithCommentRequest> findAllProductWithComment(Pageable pageable) {
+        log.debug("REST request to get a page of Products with comments");
 
         Page<Long> page;
         page = productExtendsRepository.getProductIds(pageable);
         List<Product> allProducts = productExtendsRepository.findAllProducts(page.getContent(), pageable.getSort());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(allProducts);
+        return ResponseEntity
+            .ok()
+            .headers(headers)
+            .body(new ProductPagingWithCommentRequest(allProducts, page.getTotalElements(), page.getTotalPages()));
     }
 }
