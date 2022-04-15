@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProductExtendsRepository extends ProductRepository {
     @Query(
-        value = "select new com.codehunter.khonggiantruyen.domain.ProductWithLatestCommentDate(p, max(c.commentDate)) from Product p left join Comment c on p.id=c.product group by p.id order by max(c.commentDate) desc",
+        value = "select new com.codehunter.khonggiantruyen.domain.ProductWithLatestCommentDate(p, max(c.commentDate)) from Product p inner join Comment c on p.id=c.product group by p.id order by max(c.commentDate) desc",
         countQuery = "select count(distinct p) from Product p"
     )
     Page<ProductWithLatestCommentDate> findAllNewsCommentedProduct(Pageable pageable);
